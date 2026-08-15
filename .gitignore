@@ -1,0 +1,62 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build directories
+bin/
+dist/
+build/
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+.pnpm-store/
+tsconfig.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
+
+# Database
+*.db
+*.sqlite
+
+# SQL files (exclude root SQL, but keep migrations)
+/*.sql
+!migrations/*.sql
+
+# Windows batch files (development only)
+*.bat
+
+# Temporary files
+*.tmp
+*.temp

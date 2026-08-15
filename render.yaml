@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: bukukas-backend
+    runtime: go
+    buildCommand: go build -o bukukas ./cmd/server/main.go
+    startCommand: ./bukukas
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_PORT
+        value: 8080
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bukukas-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+        # PENTING: Setelah deploy, ganti dengan secret yang kuat!
+      - key: BCRYPT_COST
+        value: 12
+      - key: CORS_ORIGIN
+        value: https://your-frontend-url.vercel.app
+        # PENTING: Ganti dengan URL frontend Vercel Anda!
+      - key: DB_MAX_OPEN_CONNS
+        value: 25
+      - key: DB_MAX_IDLE_CONNS
+        value: 5
+      - key: DB_CONN_MAX_LIFETIME
+        value: 5m
+    healthCheckPath: /api/auth/login
+    region: singapore
+    plan: starter
+    maxShutdownDelaySeconds: 30
+
+databases:
+  - name: bukukas-db
+    databaseName: invoice_saas
+    user: bukukas_user
+    region: singapore
+    plan: starter
+    postgresMajorVersion: 15
